@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixOra - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0a0a0f;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            height: 15%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            background: linear-gradient(to top, #6c6c747c 0%, #6c6c747c 100%);
+            color: white;
+            padding-top: 50px;
+        }
+
+        .navbar>h1 {
+            width: 50%;
+            height: 100%;
+            text-align: right;
+            padding-right: 2%;
+            font-weight: 1;
+        }
+
+        .navbar>div {
+            width: 50%;
+            height: 100%;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+
+        }
+
+        #button {
+            width: 20%;
+            height: 20%;
+            font-size: 30px;
+            background: none;
+            color: white;
+            border: none;
+            margin-left: 2%;
+        }
+
+        #slidebar {
+            width: 60%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            text-decoration: none;
+            position: fixed;
+            left: -100%;
+            transition: left 0.4s ease;
+
+        }
+
+        #slidebar>a {
+            text-decoration: none;
+            color: white;
+            font-size: 20;
+            font-weight: 1;
+            padding: 5px;
+        }
+
+        #slidebar>a:hover {
+            text-decoration: none;
+            color: white;
+            background-color: gray;
+            border-radius: 15px;
+        }
+
+        #slidebar.active {
+            left: 0;
+            margin-left: 10%;
+            color: black;
+        }
+
+        #submenu,
+        #submenu1 {
+            display: flex;
+            flex-direction: column;
+            top: -100%;
+            position: fixed;
+            transition: top 0.4s ease;
+            margin-left: 10%;
+            z-index: 100;
+        }
+        #submenu a, #submenu1 a {
+        text-decoration: none;
+        }
+
+        #submenu>a,
+        #submenu1>a {
+            color: white;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 3px;
+        }
+
+        #submenu>a:hover,
+        #submenu1>a:hover {
+            text-decoration: none;
+            color: white;
+            background-color: gray;
+            border-radius: 15px;
+        }
+
+        #submenu.active,
+        #submenu1.active {
+            font-weight: 1;
+            top: 0;
+            margin-left: 10%;
+            margin-top: 150px;
+        }
+
+        /* HERO */
+        .hero {
+            width: 100%;
+            height: 90vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-size: 40px;
+            font-weight: 700;
+            line-height: 1.2;
+            z-index: 2;
+        }
+
+        .hero-content span {
+            background: linear-gradient(135deg, #8e3caf, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* INFO CARDS */
+        */ .section {
+            padding: 80px 5%;
+        }
+
+        .info-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .card {
+            width: 330px;
+            padding: 30px;
+            border-radius: 20px;
+            background: #12121a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            border-color: #9146ff;
+            box-shadow: 0 0 25px #9146ff55;
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* WORK TITLE */
+        .work-section h1 {
+            text-align: center;
+            margin-bottom: 80px;
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #9161a4, #000000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* GALLERY GRID */
+        .gallery-grid {
+            width: 100%;
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            object-fit: cover;
+            height: 230px;
+            border-radius: 0;
+            transition: 0.3s ease;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: none;
+        }
+        .pixora-footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 30px 10px;
+  font-family: Arial, sans-serif;
+}
+
+.pixora-footer h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.pixora-footer p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.footer-links a {
+  color: #aaa;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-links {
+  margin: 15px 0;
+}
+    </style>
+</head>
+
+<body> <!-- NAVBAR -->
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="menu">
+            <button id="button">&#9881;</button>
+            <div id="slidebar">
+                <a href="{{url_for('home')}}">Home</a>
+                <a href="#" id="dropDown">Login</a>
+                <a href="{{url_for('faq')}}">FAQ</a>
+                <a href="{{url_for('aboutUs')}}">About Us</a>
+                <a href="#">Reviews</a>
+                <a href="#" id="dropDown1">Sign Up</a>
+            </div>
+        </div>
+        <h1>PixOra</h1>
+    </div> <!-- SUBMENUS -->
+    <div id="submenu"> <a href="{{url_for('userLogin')}}">User Login</a> <a href="{{url_for('adminLogin')}}">Admin Login</a> <a
+            href="{{url_for('vendor_login')}}">Vendor Login</a> </div>
+    <div id="submenu1"> <a href="{{url_for('userSignUp')}}">User Signup</a> <a
+            href="{{url_for('vendor_signup')}}">Vendor Signup</a> </div> <!-- HERO -->
+    <div class="hero"> <video class="hero-bg" autoplay muted loop playsinline>
+            <source src="../static/vid.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Everything You Need To Know About <br><span>PixOra...</span></h1>
+        </div>
+    </div> <!-- INFO CARDS -->
+    <div class="section info-cards">
+        <div class="card">
+            <h2>SCOPE</h2>
+            <p>Pixora connects clients with talented photographers & videographers, making event booking simple, secure
+                and efficient.</p>
+        </div>
+        <div class="card">
+            <h2>FOR WHO?</h2>
+            <p>PixOra serves anyone who wants to preserve memories with professional quality and freedom to choose
+                reliable vendors.</p>
+        </div>
+        <div class="card">
+            <h2>FEATURES</h2>
+            <ul>
+                <li>Handles multiple users</li>
+                <li>Fast booking</li>
+                <li>High quality vendors</li>
+                <li>Money back guarantee</li>
+                <li>Freelancing opportunities</li>
+                <li>Platform moderation</li>
+            </ul>
+        </div>
+    </div> <!-- WORK SECTION TITLE -->
+    <div class="work-section">
+        <h1>Some Of Our Work</h1>
+    </div> <!-- FULLSCREEN CINEMATIC GALLERY -->
+    <!-- STATIC GALLERY -->
+    <div class="gallery-grid">
+        <img src="/static/wow2.jpeg" alt="photo1">
+         <img src="/static/cato1.jpeg" alt="photo5">
+        <img src="/static/wow3.jpeg" alt="photo3">
+        <img src="/static/wow4.jpeg" alt="photo4">        
+        <img src="/static/frame.jpeg" alt="photo8" >
+        <img src="/static/cato.jpeg" alt="photo6">
+        <img src="/static/nightSky.jpeg" alt="photo7" style="height:260px;">
+        <img src="/static/sunrise-mountains.jpg" alt="photo9" >
+    </div>
+    <script> const button = document.getElementById('button'); const bar = document.getElementById('slidebar'); const submenu = document.getElementById('submenu'); const drop = document.getElementById('dropDown'); const submenu1 = document.getElementById('submenu1'); const drop1 = document.getElementById('dropDown1'); button.addEventListener('click', () => { bar.classList.toggle('active'); submenu.classList.remove('active'); submenu1.classList.remove('active'); }); drop.addEventListener('click', () => { submenu.classList.toggle('active'); submenu1.classList.remove('active'); }); drop1.addEventListener('click', () => { submenu1.classList.toggle('active'); submenu.classList.remove('active'); }); </script>
+  <footer class="pixora-footer">
+  <div class="footer-content">
+    <p>Built with love for creators.</p>
+
+    <div class="footer-links">
+    <a href="mailto:i232008@isb.nu.edu.pk">Contact</a>
+    <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+    <a href="{{ url_for('terms') }}">Terms</a>
+    </div>
+
+    <p class="copyright">© 2025 Pixora. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+
+</html>

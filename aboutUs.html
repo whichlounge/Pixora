@@ -1,0 +1,476 @@
+<html>
+
+<head>
+    <title>About Us</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: "Poppins", sans-serif;
+            color: white;
+        }
+
+        body {
+            background-color: #ebe7f0;
+            background-image: url('/static/download.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+     .navbar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      background-color: black;
+      height: 100px;
+      padding: 0 16px;
+      box-sizing: border-box;
+      z-index: 80;
+    }
+    .navbar > button, .navbar h1, #slidebar {
+      color: white;
+      font-size: 30px;
+      background: none;
+      border: none;
+      margin: 35px 20px;
+    }
+    .navbar h1 {
+      font-weight: 600;
+      text-align: right;
+      width: 10%;
+      padding-right: 1%;
+    }
+
+    #slidebar{
+      width: 20%;
+      position: fixed;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      left: -100%;
+      top: 0;
+      height: 100px;
+      background: none;
+      transition: left 0.4s ease;
+      z-index: 90;
+    }
+    #slidebar.active { left: 0; color: white; margin-left: 10%; }
+
+    #slidebar > a{
+      display: block;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      font-weight: 400;
+      padding: 0px 0px;
+      height: 30px;
+    }
+    #slidebar > a:hover { background-color: grey; border-radius: 10px; }
+
+    #submenu, #submenu1 {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: -100%;
+      left: 5%;
+      transition: top 0.4s ease;
+      margin: 100px 0 0 5%;
+      z-index: 95;
+      background: rgba(0,0,0,0.85);
+      padding: 10px;
+      border-radius: 8px;
+    }
+    #submenu > a, #submenu1 > a {
+      text-decoration: none;
+      color: white;
+      font-size: 15px;
+      padding: 8px 10px;
+    }
+    #submenu > a:hover, #submenu1 > a:hover { background-color: grey; border-radius: 6px; }
+    #submenu.active, #submenu1.active { top: 100px; }
+
+        /* HERO SECTION */
+        .hero {
+            height: 80vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            font-weight: 300;
+            letter-spacing: 6px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 200;
+            margin-top: 10px;
+            color: #dcdcdc;
+            letter-spacing: 3px;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            /* background: rgba(208, 208, 208, 0.85);*/
+            backdrop-filter: blur(10px);
+            padding: 70px 80px;
+            margin: 80px auto;
+            border-radius: 0;
+            /* no rounded edges */
+            width: 85%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(183, 183, 183, 0.3);
+            animation: fadeUp 1.2s ease;
+        }
+
+        .container h1 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 300;
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: #000000;
+            text-transform: uppercase;
+        }
+
+        /* VISION, MISSION, VALUES */
+        .subContainer2 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .vision,
+        .mission,
+        .values {
+            flex: 1 1 300px;
+            padding: 40px;
+            background: rgba(133, 126, 140, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease;
+            box-shadow: 0 0 20px rgba(100, 0, 150, 0.2);
+        }
+
+        .vision:hover,
+        .mission:hover,
+        .values:hover {
+            transform: translateY(-10px);
+            background: rgba(178, 148, 208, 0.85);
+            box-shadow: 0 0 30px rgba(86, 68, 103, 0.4);
+        }
+
+        .vision h1,
+        .mission h1,
+        .values h1 {
+            color: #ffffff;
+            text-align: center;
+            font-weight: 400;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .para p {
+            margin-top: 10px;
+            font-size: 17px;
+            color: #ffffff;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        /* TEAM SECTION */
+        h1.section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            margin-top: 80px;
+            color: #ffffff;
+            font-size: 86px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+        }
+
+        .rafay,
+        .minhal,
+        .zuha {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 70px auto;
+            padding: 50px;
+            background: rgba(178, 148, 208, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 20px rgba(115, 76, 134, 0.3);
+            border-radius: 0;
+            width: 85%;
+            transition: all 0.5s ease;
+        }
+
+        .rafay:hover,
+        .minhal:hover,
+        .zuha:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 35px rgba(185, 128, 232, 0.224);
+        }
+
+        .rafayPic img,
+        .minhalPic img,
+        .zuhaPic img {
+            border-radius: 0;
+            /* Square, clean edges */
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            filter: grayscale(40%);
+            transition: all 0.6s ease;
+        }
+
+        .rafayPic img:hover,
+        .minhalPic img:hover,
+        .zuhaPic img:hover {
+            filter: grayscale(0);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(180, 140, 255, 0.6);
+        }
+
+        .info {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .info h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            color: #333333;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .info p {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            color: #333333;
+            text-align: justify;
+            line-height: 1.8;
+        }
+.pixora-footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 30px 10px;
+  font-family: Arial, sans-serif;
+}
+
+.pixora-footer h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+.pixora-footer p {
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.footer-links a {
+  color: #aaa;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-links {
+  margin: 15px 0;
+}
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .rafay,
+            .minhal,
+            .zuha {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rafayPic,
+            .minhalPic,
+            .zuhaPic {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<button id = "menuButton">&#9881;</button>
+
+    <div class="navbar">
+        <div class="menu">
+            <button id="button">&#9881;</button>
+            <div id="slidebar">
+                <a href="{{url_for('home')}}">Home</a>
+                <a href="#" id="dropDown">Login</a>
+                <a href="{{url_for('faq')}}">FAQ</a>
+                <a href="{{url_for('aboutUs')}}">About Us</a>
+                <a href="#">Reviews</a>
+                <a href="#" id="dropDown1">Sign Up</a>
+            </div>
+        </div>
+        <h1>PixOra</h1>
+    </div>
+
+    <div class="hero">
+        <h1>ABOUT US</h1>
+        <h2>CAPTURING THE UNSEEN</h2>
+    </div>
+
+    <div class="container">
+        <h1>Our Vision, Mission & Values</h1>
+        <div class="subContainer2">
+            <div class="vision">
+                <h1>Our Vision</h1>
+                <div class="para">
+                    <p>We envision a world where finding the right photographer is as easy as a single click...</p>
+                </div>
+            </div>
+
+            <div class="mission">
+                <h1>Our Mission</h1>
+                <div class="para">
+                    <p>Our mission is to make professional photography accessible, simple, and effortless for
+                        everyone...</p>
+                </div>
+            </div>
+
+            <div class="values">
+                <h1>Our Values</h1>
+                <div class="para">
+                    <p>At the heart of our platform are values that guide everything we do — creativity, trust, and
+                        excellence...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="section-title">The DEVENGERS</h1>
+
+    <div class="rafay">
+        <div class="rafayPic">
+
+            <img src="/static/rafay.jpeg" alt="">
+        </div>
+        <div class="info">
+            <h1>About Rafay</h1>
+            <p>Abdul Rafay is a passionate Cybersecurity student with a strong foundation in programming languages
+                such as C++, HTML, CSS, and JavaScript. With experience in web development and a keen eye for detail,
+                he plays a crucial role in ensuring the seamless integration of various components within the project.
+                Rafay's dedication to learning and problem-solving makes him an invaluable asset to the team.</p>
+        </div>
+    </div>
+
+    <div class="minhal">
+        <div class="info">
+            <h1>About Minhal</h1>
+            <p>Minhal Hassan is a dedicated Cybersecurity enthusiast recognized for her outstanding academic
+                achievements and strong technical expertise. Skilled in software development using diverse frameworks,
+                tools, and programming languages, including HTML, CSS, and Java, she continuously seeks to expand her
+                knowledge and embrace emerging technologies to drive innovation and excellence. </p>
+        </div>
+        <div class="minhalPic">
+
+            <img src="/static/minhal.jpg" alt="">
+        </div>
+    </div>
+
+    <div class="zuha">
+        <div class="zuhaPic">
+
+            <img src="/static/zuha.jpg" alt="">
+        </div>
+        <div class="info">
+            <h1>About Zuha</h1>
+            <p>Zuha Aman is a cybersecurity student proficient in C++, HTML, CSS, and JavaScript. With experience in web
+                design, she applies both technical expertise and creative problem-solving to guide the overall structure
+                and direction of the project. She ensures that all components are well-integrated, efficient, and
+                aligned with innovative outcomes.</p>
+        </div>
+    </div>
+
+    <div class="footer"></div>
+
+    <script>
+        const button = document.getElementById('button');
+        const bar = document.getElementById('slidebar');
+        button.addEventListener('click', () => {
+            bar.classList.toggle('active');
+        });
+    </script>
+      <footer class="pixora-footer">
+  <div class="footer-content">
+    <p>Built with love for creators.</p>
+
+    <div class="footer-links">
+    <a href="mailto:i232008@isb.nu.edu.pk">Contact</a>
+    <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+    <a href="{{ url_for('terms') }}">Terms</a>
+    </div>
+
+    <p class="copyright">© 2025 Pixora. All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+
+</html>
